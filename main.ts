@@ -55,7 +55,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 function move () {
     for (let value of sprites.allOfKind(SpriteKind.slime)) {
         timer.background(function () {
-            sprites.setDataNumber(value, "movedir", randint(0, 3))
+            sprites.setDataNumber(value, "movedir", rng.randomRange(0, 3))
             for (let index = 0; index < 8; index++) {
                 value.x += directions[sprites.readDataNumber(value, "movedir")][0]
                 value.y += directions[sprites.readDataNumber(value, "movedir")][1]
@@ -66,12 +66,21 @@ function move () {
 }
 let directions: number[][] = []
 let mySprite: Sprite = null
+let rng: FastRandomBlocks = null
 namespace userconfig {
     export const ARCADE_SCREEN_WIDTH = 128
     export const ARCADE_SCREEN_HEIGHT = 128
 }
+rng = Random.createRNG(game.askForNumber("seed", 3))
 let maps = [tileUtil.createSmallMap(tilemap`level2`)]
 tiles.setCurrentTilemap(maps[0])
+for (let value of tiles.getTilesByType(assets.tile`myTile12`)) {
+    if (rng.percentChance(4)) {
+        tiles.setTileAt(value, assets.tile`myTile3`)
+    } else if (rng.percentChance(10)) {
+        tiles.setTileAt(value, assets.tile`myTile4`)
+    }
+}
 mySprite = sprites.create(img`
     . c c c c c c . 
     . c 1 1 1 1 c . 
@@ -102,5 +111,5 @@ directions = [
 [1, 0]
 ]
 for (let value of sprites.allOfKind(SpriteKind.slime)) {
-    sprites.setDataNumber(value, "movedir", randint(0, 3))
+    sprites.setDataNumber(value, "movedir", rng.randomRange(0, 3))
 }

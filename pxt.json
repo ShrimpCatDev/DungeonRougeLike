@@ -1,11 +1,12 @@
 {
-    "name": "test",
+    "name": "Dunjin",
     "description": "",
     "dependencies": {
         "device": "*",
         "arcade-tile-util": "github:microsoft/arcade-tile-util#v1.2.0",
         "arcade-sprite-data": "github:microsoft/arcade-sprite-data#v0.2.1",
-        "Timers": "github:microsoft/arcade-timers#v1.1.0"
+        "Timers": "github:microsoft/arcade-timers#v1.1.0",
+        "FastRandomBlocks": "github:UnsignedArduino/Fast-Random-Blocks#8c985a77e5c4278e43a7bc375db095c67afb58ed"
     },
     "files": [
         "main.blocks",
